@@ -25,6 +25,12 @@ export default function Textform(props) {
       settext(event.target.value)
   }
 
+  const handleExtraSpaces = () => {
+    let newText = text.split(/[ ]+/);
+    settext(newText.join(" "));
+    props.showalert("Extra spaces removed!", "success");
+}
+
   // to capitalize the first character of any string
   const capitalize = () => {
         
@@ -54,20 +60,23 @@ export default function Textform(props) {
         style={{backgroundColor : props.mode ==="light" ?"white":"#212529" , color : props.mode ==="light" ?"black":"white"}}
       ></textarea>
 
-      <button className="btn btn-primary my-3 mx-1" onClick={HandleUpclick}>
+      <button className="btn btn-primary my-2 mx-1" onClick={HandleUpclick}>
         Convert to Uppercase
       </button>
-      <button type="button" className="btn btn-primary mx-1" onClick={HandleDwclick}>
+      <button type="button" className="btn btn-primary mx-1 my-2" width="100vw" onClick={HandleDwclick}>
       Convert to Lowercase
       </button>
-      <button type="button" className="btn btn-primary mx-1" onClick={HandleClearclick}>
+      <button type="button" className="btn btn-primary mx-1 my-2" onClick={HandleClearclick}>
       Clear-Text
       </button>
-      <button type="button" className="btn btn-primary mx-1" onClick={capitalize}>
+      <button type="button" className="btn btn-primary mx-1 my-2" onClick={capitalize}>
       Capitalize 1st letter 
       </button>
       <button type="button" className="btn btn-primary mx-1 my-2" onClick={Handlecopy}>
       Copy text
+      </button>
+      <button type="button" className="btn btn-primary mx-1 my-2" onClick={handleExtraSpaces}>
+      Remove space
       </button>
 
     </div>
