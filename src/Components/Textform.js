@@ -42,8 +42,8 @@ export default function Textform(props) {
   let Handlecopy = ()=>{
     let text = document.getElementById("myBox");
     text.select();
-    text.setSelectionRange(0 , 9999);
     navigator.clipboard.writeText(text.value);
+    document.getSelection().removeAllRanges();
     props.showalert("Text copied to clipboard" , "success")
   }
   return (
@@ -60,22 +60,22 @@ export default function Textform(props) {
         style={{backgroundColor : props.mode ==="light" ?"white":"#212529" , color : props.mode ==="light" ?"black":"white"}}
       ></textarea>
 
-      <button className="btn btn-primary my-2 mx-1" onClick={HandleUpclick}>
+      <button disabled={text.length===0} className="btn btn-primary my-2 mx-1" onClick={HandleUpclick}>
         Convert to Uppercase
       </button>
-      <button type="button" className="btn btn-primary mx-1 my-2" width="100vw" onClick={HandleDwclick}>
+      <button disabled={text.length===0} className="btn btn-primary mx-1 my-2" width="100vw" onClick={HandleDwclick}>
       Convert to Lowercase
       </button>
-      <button type="button" className="btn btn-primary mx-1 my-2" onClick={HandleClearclick}>
+      <button disabled={text.length===0} className="btn btn-primary mx-1 my-2" onClick={HandleClearclick}>
       Clear-Text
       </button>
-      <button type="button" className="btn btn-primary mx-1 my-2" onClick={capitalize}>
+      <button disabled={text.length===0} className="btn btn-primary mx-1 my-2" onClick={capitalize}>
       Capitalize 1st letter 
       </button>
-      <button type="button" className="btn btn-primary mx-1 my-2" onClick={Handlecopy}>
+      <button disabled={text.length===0} className="btn btn-primary mx-1 my-2" onClick={Handlecopy}>
       Copy text
       </button>
-      <button type="button" className="btn btn-primary mx-1 my-2" onClick={handleExtraSpaces}>
+      <button disabled={text.length===0} className="btn btn-primary mx-1 my-2" onClick={handleExtraSpaces}>
       Remove space
       </button>
 
@@ -83,9 +83,13 @@ export default function Textform(props) {
     <hr/>
     <div className="container">
         <h2>Your Test Summary</h2>
-        <p>text having <b>{text.split(" ").length}</b> words and <b>{text.length}</b> characters</p>
+        <p>text having <b>{text.split(" ").filter((element)=>{
+          return element.length!==0;
+        }).length}</b> words and <b>{text.length}</b> characters</p>
         
-        <p>approx <b>{0.008 * text.split(" ").length}</b> minutes required to read </p>
+        <p>approx <b>{0.008 * text.split(" ").filter((element)=>{
+          return element.length!==0;
+        }).length}</b> minutes required to read </p>
     </div>
     <hr/>
     <h2>Preview</h2>
