@@ -40,10 +40,9 @@ export default function Textform(props) {
 
 }
   let Handlecopy = ()=>{
-    let text = document.getElementById("myBox");
-    text.select();
-    navigator.clipboard.writeText(text.value);
-    document.getSelection().removeAllRanges();
+  
+    navigator.clipboard.writeText(text);
+    
     props.showalert("Text copied to clipboard" , "success")
   }
   return (
@@ -83,11 +82,11 @@ export default function Textform(props) {
     <hr/>
     <div className="container">
         <h2>Your Test Summary</h2>
-        <p>text having <b>{text.split(" ").filter((element)=>{
+        <p>text having <b>{text.split(/\s+/).filter((element)=>{
           return element.length!==0;
         }).length}</b> words and <b>{text.length}</b> characters</p>
         
-        <p>approx <b>{0.008 * text.split(" ").filter((element)=>{
+        <p>approx <b>{0.008 * text.split(/\s+/).filter((element)=>{
           return element.length!==0;
         }).length}</b> minutes required to read </p>
     </div>

@@ -1,3 +1,9 @@
 p{
     color: #808080;
 }
+
+
+
+.accordion-button::after {
+    filter: invert(1)
+}

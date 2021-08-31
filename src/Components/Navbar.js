@@ -25,31 +25,32 @@ export default function Navbar(props) {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item active">
-              <Link class="nav-link" to="/">
+            <li className="nav-item active">
+              <Link className="nav-link" to="/">
                 Home 
               </Link>
             </li>
-            <li class="nav-item active">
-              <Link class="nav-link" to="about">
+            <li className="nav-item active">
+              <Link className="nav-link" to="about">
                 About 
               </Link>
             </li>
           </ul>
           <form className="d-flex">
+
             <div
               className={`form-check form-switch text-${
                 props.mode === "dark" ? "light" : "dark"
               }`}
             >
               <input
-                class="form-check-input"
+                className="form-check-input"
                 type="checkbox"
                 id="flexSwitchCheckDefault"
-                onClick={props.togglemode}
+                onClick={()=>{props.togglemode(null)}}
               />
-              <label class="form-check-label" for="flexSwitchCheckDefault">
-                Enable dark mode
+              <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
+                Toggle mode
               </label>
             </div>
           </form>
